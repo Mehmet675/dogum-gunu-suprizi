@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>İyi ki Doğdun Aşkım 💖</title>
+  <style>
+    body {
+      background-color: #b30000;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    .text {
+      font-size: 1.5rem;
+      margin: 15px 0;
+      white-space: pre-wrap;
+    }
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .heart {
+      position: absolute;
+      color: pink;
+      font-size: 24px;
+      animation: float 10s linear infinite;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Doğum Günün Kutlu Olsun Aşkım 🎉</h1>
+
+  <div class="text" id="typing"></div>
+
+  <div class="hearts" id="hearts"></div>
+
+  <audio autoplay loop>
+    <source src="https://cdn.freesound.org/previews/660/660143_1648170-lq.mp3" type="audio/mpeg" />
+    Tarayıcınız ses çalmayı desteklemiyor.
+  </audio>
+
+  <script>
+    const messages = [
+      "Sen benim hayatımın anlamısın. İyi ki varsın. 💝 💖",
+      "💞",
+      "🤍",
+      "💌",
+      "💓",
+      "Seninle geçirdiğim her an, hayatımın en değerli anısı. Seni çok seviyorum♡♡",
+      "\n\n🎉🎉🎉 Doğum Günün Kutlu Olsun Hayatımın Anlamı Her Şeyim! 🎉🎉🎉",
+      "Seninle olduğum her an çok güzel, çok özel. İyi ki doğdun, iyi ki varsın.",
+      "Birlikte nice güzel yıllara, nice mutlu anılara... Daha çok beraber, uzunca yıllar hayatımda hep ol 💖💝",
+      "Seni çok seviyorum, iyi ki hayatımın bir parçası oldun, her şeyim oldun! 💖💝",
+      "Kalbimin en güzel köşesi hep sana ait olacak.",
+      "SENİ ÇOK SEVİYORUM, ÇOK AŞIĞIM SANA 💞"
+    ];
+
+    let textEl = document.getElementById("typing");
+
+    function typeMessage(index = 0) {
+      if (index >= messages.length) return;
+      let msg = messages[index];
+      let charIndex = 0;
+      textEl.innerHTML += "\n\n";
+      function typeChar() {
+        if (charIndex < msg.length) {
+          textEl.innerHTML += msg[charIndex++];
+          setTimeout(typeChar, 30);
+        } else {
+          setTimeout(() => typeMessage(index + 1), 800);
+        }
+      }
+      typeChar();
+    }
+    typeMessage();
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      heart.style.animationDuration = (Math.random() * 5 + 5) + "s";
+      document.getElementById("hearts").appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
